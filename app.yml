@@ -1,0 +1,16 @@
+version: '2'
+services:
+    jtrackseries-app:
+        image: fmunozse/jtrackseries
+        external_links:
+            - jtrackseries-postgresql:postgresql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/JTrackSeries
+            - JTRACKSERIES_TVDB_TOKEN=18C5DB503E5170F2
+        ports:
+            - 8080:8080
+    jtrackseries-postgresql:
+        extends:
+            file: postgresql.yml
+            service: jtrackseries-postgresql
